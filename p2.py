@@ -15,7 +15,7 @@ def score_guess(guess, secret):
     for i in range (5):
         if guess[i] == secret[i]:
             result.append("Y")
-        elif guess[i] in secret[i+1: ]:
+        elif guess[i] in secret:
             result.append("O")
         else:
             result.append("X")

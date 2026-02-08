@@ -28,7 +28,7 @@ class TestScoreGuess(unittest.TestCase):
 
     def test_late_occurrence_only(self):
         # 'a' only appears later
-        self.assertEqual(score_guess("abcde", "eabcd"), "OOOOX")
+        self.assertEqual(score_guess("abcde", "eabcd"), "OOOOO")
 
     def test_all_wrong(self):
         self.assertEqual(score_guess("hello", "banks"), "XXXXX")
@@ -73,7 +73,7 @@ class TestPlayTurn(unittest.TestCase):
         self.assertEqual(play_turn("crane", "crane"), "YYYYY")
 
     def test_valid_not_win(self):
-        self.assertEqual(play_turn("batch", "beach"), "YXXYY")
+        self.assertEqual(play_turn("batch", "beach"), "YXOYY")
 if __name__ == "__main__":
     unittest.main()
 
