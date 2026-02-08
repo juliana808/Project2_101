@@ -30,6 +30,9 @@ class TestScoreGuess(unittest.TestCase):
         # 'a' only appears later
         self.assertEqual(score_guess("abcde", "eabcd"), "OOOOX")
 
+    def test_all_wrong(self):
+        self.assertEqual(score_guess("hello", "banks"), "XXXXX")
+
 
 class TestIsValidGuess(unittest.TestCase):
 
@@ -45,6 +48,10 @@ class TestIsValidGuess(unittest.TestCase):
     def test_non_letters(self):
         self.assertFalse(is_valid_guess("a1cde"))
         self.assertFalse(is_valid_guess("ab-de"))
+    
+    def test_all_lowercase(self):
+        self.assertTrue(is_valid_guess("where"))
+        self.assertFalse(is_valid_guess("BEACH"))
 
 
 class TestChooseSecret(unittest.TestCase):
@@ -53,6 +60,9 @@ class TestChooseSecret(unittest.TestCase):
         words = ["apple", "brick", "crane"]
         self.assertIn(choose_secret(words), "apple")
 
+    def test_choose_word(self):
+        words = ["world"]
+        self.assertIn(choose_secret(words), "world")
 
 class TestPlayTurn(unittest.TestCase):
 
@@ -62,7 +72,8 @@ class TestPlayTurn(unittest.TestCase):
     def test_valid_guess(self):
         self.assertEqual(play_turn("crane", "crane"), "YYYYY")
 
-
+    def test_valid_not_win(self):
+        self.assertEqual(play_turn("batch", "beach"), "YXXYY")
 if __name__ == "__main__":
     unittest.main()
 
